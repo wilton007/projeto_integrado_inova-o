@@ -1,17 +1,5 @@
-# sistema_estoque.py
-
+from produto import Produto
 from typing import List
-
-class Produto:
-    def __init__(self, nome: str, categoria: str, quantidade: int, preco: float, localizacao: str):
-        self.nome = nome
-        self.categoria = categoria
-        self.quantidade = quantidade
-        self.preco = preco
-        self.localizacao = localizacao
-
-    def __repr__(self):
-        return f"{self.nome} | {self.categoria} | Qtd: {self.quantidade} | Preco: {self.preco} | Local: {self.localizacao}"
 
 class SistemaEstoque:
     def __init__(self):
@@ -46,19 +34,3 @@ class SistemaEstoque:
             if produto.quantidade > 100:
                 relatorio['estoque_excesso'].append(produto)
         return relatorio
-
-######################### Aqui eu Deixei um Exemplo de uso ################################
-if __name__ == "__main__":
-    sistema = SistemaEstoque()
-    sistema.cadastrar_produto(Produto("Mouse", "Informática", 3, 49.90, "Corredor A1"))
-    sistema.cadastrar_produto(Produto("Teclado", "Informática", 150, 99.90, "Corredor A2"))
-    sistema.atualizar_estoque("Mouse", 10)
-    print(sistema.rastrear_localizacao("Mouse"))
-
-    relatorio = sistema.gerar_relatorio()
-    print("\nProdutos com estoque baixo:")
-    for p in relatorio['estoque_baixo']:
-        print(p)
-    print("\nProdutos com excesso de estoque:")
-    for p in relatorio['estoque_excesso']:
-        print(p)
